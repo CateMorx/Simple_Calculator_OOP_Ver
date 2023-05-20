@@ -95,5 +95,25 @@ class calculator():
             result = self.num_1/ self.num_2
             self.result=result
             return
+    #Creates def for Input of num1 & num2
+    def set_num1(self, num_1):
+        try:
+            if not isinstance(num_1, int):
+                raise TypeError
+        except TypeError:
+            messagebox.showerror("TypeError", "Number must be an integer")
+        else:
+            self.num_1 = num_1
+            return self.num_1
 
-
+    def set_num2(self, num_2):
+        try:
+            if not isinstance(num_2, int):
+                raise TypeError
+        except TypeError:
+            messagebox.showerror("TypeError", "Number must be an integer")
+        else:
+            self.num_2 = num_2
+            return self.num_2
+    def get_results(self):
+        return self.result
