@@ -6,6 +6,7 @@
 import tkinter as tkinter
 from tkinter import messagebox
 from Simple_app_calculator import calculator
+from tkinter import ttk
 #Creates class for calculator GUI
 calc = calculator()
 class calculator_GUI:
@@ -33,6 +34,11 @@ class calculator_GUI:
         self.calc.num2_entry.pack(pady=5)
         self.calc.num2_enter= tkinter.Button(GUI, text="Enter", command=self.enter_num2)
         self.calc.num2_enter.pack(pady=10)
+
+        options = ["1-Additon", "2-Subtraction", "3-Multiplication", "4-Division"]
+        self.calc.combo = ttk.Combobox(GUI, textvariable=options)
+        self.calc.combo.pack()
+        self.calc.combo.set("Select an operation")
 #Def for button functions
     #def for power button command
     def toggle_power(self):
@@ -59,3 +65,7 @@ class calculator_GUI:
  
     #Def for asking user if they want to try again or not
 #starts the event loop of the GUI application
+GUI = tkinter.Tk()
+GUI.title("Calculator")
+GUI_calculator= calculator_GUI(calc, GUI)
+GUI.mainloop()
