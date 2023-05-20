@@ -22,6 +22,7 @@ class calculator():
      # def for performing the addition operation 
     def operation_addition(self,num_1,num_2):
         try:
+            #ensures that num1 and num2 is an integer and has a value
             if not isinstance(num_1, int):
                 raise TypeError
             elif not num_1:
@@ -30,6 +31,7 @@ class calculator():
                 raise TypeError
             elif not num_2:
                 raise ValueError
+            #Prints error message for corresponding type of Error
         except TypeError:
             messagebox.showerror("TypeError", "Number 1 must be an integer")
         except ValueError:
@@ -41,6 +43,7 @@ class calculator():
     # def for performing the subtraction operation 
     def operation_subtraction(self,num_1,num_2):
         try:
+            #ensures that num1 and num2 is an integer and has a value
             if not isinstance(num_1, int):
                 raise TypeError
             elif not num_1:
@@ -49,6 +52,7 @@ class calculator():
                 raise TypeError
             elif not num_2:
                 raise ValueError
+            #Prints error message for corresponding type of Error
         except TypeError:
             messagebox.showerror("TypeError", "Number 1 must be an integer")
         except ValueError:
@@ -60,6 +64,7 @@ class calculator():
     # def for performing the multiplication operation 
     def operation_multiplication(self,num_1,num_2):
         try:
+            #ensures that num1 and num2 is an integer and has a value
             if not isinstance(num_1, int):
                 raise TypeError
             elif not num_1:
@@ -68,6 +73,7 @@ class calculator():
                 raise TypeError
             elif not num_2:
                 raise ValueError
+            #Prints error message for corresponding type of Error
         except TypeError:
             messagebox.showerror("TypeError", "Number 1 must be an integer")
         except ValueError:
@@ -79,6 +85,7 @@ class calculator():
     # def for performing the division operation 
     def operation_division(self,num_1,num_2):
         try:
+            #ensures that num1 and num2 is an integer and has a value
             if not isinstance(num_1, int):
                 raise TypeError
             elif not num_1:
@@ -87,6 +94,7 @@ class calculator():
                 raise TypeError
             elif not num_2:
                 raise ValueError
+            #Prints error message for corresponding type of Error
         except TypeError:
             messagebox.showerror("TypeError", "Number 1 must be an integer")
         except ValueError:
