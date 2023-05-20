@@ -6,11 +6,16 @@
 import tkinter as tkinter
 from tkinter import messagebox
 #Creates calculator class
-#Creates def for Non-Parametrized Constructor
-#Creates def for on and off of calculator
-#Creates def for all operations
-#Creates def for Input of num1 & num2
-def calculate():
+class calculator():
+    #Creates def for Non-Parametrized Constructor
+    def __init__(self):
+        self.num_1=0
+        self.num_2=0
+        self.on = False
+        self.result=0
+    #Creates def for on and off of calculator
+    #Creates def for all operations
+    #Creates def for Input of num1 & num2
      # def for performing the addition operation 
     if operation == 1:
         result = num1 + num2
