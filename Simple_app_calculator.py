@@ -14,12 +14,26 @@ class calculator():
         self.on = False
         self.result=0
     #Creates def for on and off of calculator
-    #Creates def for all operations
-    #Creates def for Input of num1 & num2
+    def turn_On(self):
+        self.on = True
+
+    def turn_Off(self):
+        self.on = False
      # def for performing the addition operation 
-    if operation == 1:
-        result = num1 + num2
-        result_label.config(text="Result: " + str(result))
+    def operation_addition(self,num_1,num_2):
+        try:
+            if not isinstance(num_1, int):
+                raise TypeError
+            elif not num_1:
+                raise ValueError
+        except TypeError:
+            messagebox.showerror("TypeError", "Number 1 must be an integer")
+        except ValueError:
+            messagebox.showerror("ValueError", "Number 1 must be an integer")
+        else:
+            result = self.num_1 + self.num_2
+            self.result=result
+            return
     # def for performing the subtraction operation 
     elif operation == 2:
         result = num1 - num2
@@ -43,5 +57,5 @@ class calculator():
     if not choice:
         messagebox.showinfo("Thank you message", "Thank you!")
         window.destroy()
-
+    #Creates def for Input of num1 & num2
 
