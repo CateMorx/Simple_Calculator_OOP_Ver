@@ -36,7 +36,9 @@ class calculator_GUI:
         self.calc.num2_enter.pack(pady=10)
 
         options = ["1-Additon", "2-Subtraction", "3-Multiplication", "4-Division"]
-        self.calc.combo = ttk.Combobox(GUI, textvariable=options)
+        self.calc.selected_option = tkinter.StringVar()
+        self.calc.combo = ttk.Combobox(GUI, textvariable=self.calc.selected_option)
+        self.calc.combo['values'] = options
         self.calc.combo.pack()
         self.calc.combo.set("Select an operation")
 #Def for button functions
