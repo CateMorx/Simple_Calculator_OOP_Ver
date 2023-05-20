@@ -35,12 +35,23 @@ class calculator_GUI:
         self.calc.num2_enter= tkinter.Button(GUI, text="Enter", command=self.enter_num2)
         self.calc.num2_enter.pack(pady=10)
 
+        #Combobox for options of operations
         options = ["1-Additon", "2-Subtraction", "3-Multiplication", "4-Division"]
         self.calc.selected_option = tkinter.StringVar()
         self.calc.combo = ttk.Combobox(GUI, textvariable=self.calc.selected_option)
         self.calc.combo['values'] = options
         self.calc.combo.pack()
         self.calc.combo.set("Select an operation")
+
+        #Label and textbox for results
+        self.calc.results_label = tkinter.Label(GUI, text="Results:")
+        self.calc.results_label.pack(pady=5)
+        self.calc.results_entry = tkinter.Entry(GUI)
+        self.calc.results_entry.pack(pady=5)
+        
+        #Button to calculate results
+        self.calc.prints_results = tkinter.Button(GUI, text="Caculate", command=self.calculate_results)
+        self.calc.prints_results.pack(pady=10)
 #Def for button functions
     #def for power button command
     def toggle_power(self):
