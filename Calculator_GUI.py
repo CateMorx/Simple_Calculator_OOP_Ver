@@ -25,6 +25,14 @@ class calculator_GUI:
         self.calc.num1_entry.pack(pady=5)
         self.calc.num1_enter= tkinter.Button(GUI, text="Enter", command=self.enter_num1)
         self.calc.num1_enter.pack(pady=10)
+
+        #Label, Text Box, and Button for Num1 Input
+        self.calc.num2_label = tkinter.Label(GUI, text="Number 2:")
+        self.calc.num2_label.pack(pady=5)
+        self.calc.num2_entry = tkinter.Entry(GUI)
+        self.calc.num2_entry.pack(pady=5)
+        self.calc.num2_enter= tkinter.Button(GUI, text="Enter", command=self.enter_num2)
+        self.calc.num2_enter.pack(pady=10)
 #Def for button functions
     #def for power button command
     def toggle_power(self):
@@ -36,11 +44,18 @@ class calculator_GUI:
             self.calc.power_button.config(text="Power: On")
 
     def enter_num1 (self):
-            if not self.calc.on:
-                messagebox.showinfo("Error", "Please turn on the Power")
-                return
-            num_1 = self.calc.num1_entry.get()
-            self.calc.set_num1(int(num_1))
-            self.num1_calculate=1
+        if not self.calc.on:
+            messagebox.showinfo("Error", "Please turn on the Power")
+            return
+        num_1 = self.calc.num1_entry.get()
+        self.calc.set_num1(int(num_1))
+
+    def enter_num2 (self):
+        if not self.calc.on:
+            messagebox.showinfo("Error", "Please turn on the Power")
+            return
+        num_2 = self.calc.num2_entry.get()
+        self.calc.set_num2(int(num_2))
+ 
     #Def for asking user if they want to try again or not
 #starts the event loop of the GUI application
