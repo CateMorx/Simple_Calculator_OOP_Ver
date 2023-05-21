@@ -80,11 +80,21 @@ class calculator_GUI:
             messagebox.showerror("ValueError", "Number must be an integer")
 
     def enter_num2 (self):
-        if not self.calc.on:
-            messagebox.showinfo("Error", "Please turn on the Power")
-            return
-        num_2 = self.calc.num2_entry.get()
-        self.calc.set_num2(int(num_2))
+        try:
+            if not self.calc.on:
+                messagebox.showinfo("Error", "Please turn on the Power")
+                return
+            num_2 = self.calc.num2_entry.get()
+            if not num_2:
+                messagebox.showinfo("Error", "Please enter a value for Number 1")
+                return
+
+            if not num_2.isdigit():
+                raise ValueError
+
+            self.calc.set_num2(int(num_2))
+        except ValueError:
+            messagebox.showerror("ValueError", "Number must be an integer")
  
     def calculate_results(self):
         selected_item = self.calc.combo.get()
