@@ -61,6 +61,38 @@ class calculator_GUI:
         else:
             self.calc.turn_On()
             self.calc.power_button.config(text="Power: On")
+            # Create a top-level window for the loading popup
+            loading_popup = tkinter.Toplevel()
+            loading_popup.title("Initializing...")
+            loading_popup.geometry("200x100")
+            loading_popup.resizable(False, False)
+            
+            # Create a label to display the loading message
+            label = ttk.Label(loading_popup, text="Initializing Casio ...", font=("Helvetica", 12))
+            label.pack(pady=20)
+            
+            # Add a progress bar to indicate the loading progress
+            progressbar = ttk.Progressbar(loading_popup, mode='determinate')
+             # Set the maximum value of the progress bar
+            progressbar['maximum'] = 100 
+             # Set the minimum value of the progress bar
+            progressbar['value'] = 0
+            progressbar.pack(pady=10)
+            progressbar.start()
+            
+            # Display the loading popup window
+            loading_popup.transient(self.GUI)
+            loading_popup.grab_set()
+            loading_popup.focus_set()
+            delay = 100
+            # Close the loading popup after 5 seconds
+            while progressbar['value'] < progressbar['maximum']:
+                progressbar['value'] += 5
+                if progressbar['value'] >= progressbar['maximum']:
+                    loading_popup.destroy()
+                else:
+                    self.GUI.update()
+                    self.GUI.after(delay)
 
     def enter_num1 (self):
         try:
