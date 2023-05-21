@@ -18,7 +18,7 @@ This program portrays the following features:
 
 
 # Demo
-![Alt Text](Calculator_GUI.gif)
+![Alt Text](Calculator_OOP.gif)
 
 # Needed Module
 Tkinter
