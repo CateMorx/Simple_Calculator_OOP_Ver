@@ -192,7 +192,21 @@ class calculator_GUI:
             #Clears any previous input in results entry and replaces with current results
             self.calc.results_entry.delete(0, tkinter.END)
             self.calc.results_entry.insert(0, str(results))
-    #Def for asking user if they want to try again or not
+        # Asking user if they want to try again or not
+        choice = messagebox.askyesno("Try again?", "Do you want to try again?")
+        #If no, creates a pop-up Thank you message and closes the program
+        if not choice:
+            messagebox.showinfo("Thank you message", "Thank you!")
+            GUI.destroy()
+        #If yes, clears all initial input
+        else:
+            self.calc.num1_entry.delete(0, tkinter.END)
+            self.calc.num2_entry.delete(0, tkinter.END)
+            self.calc.selected_option.set("Select an operation")
+            self.calc.results_entry.delete(0, tkinter.END)
+            self.num1_calculate=0
+            self.num2_calculate=0
+
 #starts the event loop of the GUI application
 GUI = tkinter.Tk()
 GUI.title("Calculator")

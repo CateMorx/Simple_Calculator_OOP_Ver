@@ -25,17 +25,11 @@ class calculator():
             #ensures that num1 and num2 is an integer and has a value
             if not isinstance(num_1, int):
                 raise TypeError
-            elif not num_1:
-                raise ValueError
             elif not isinstance(num_2, int):
                 raise TypeError
-            elif not num_2:
-                raise ValueError
             #Prints error message for corresponding type of Error
         except TypeError:
             messagebox.showerror("TypeError", "Number 1 must be an integer")
-        except ValueError:
-            messagebox.showerror("ValueError", "Number 1 must be an integer")
         else:
             result = self.num_1 + self.num_2
             self.result=result
@@ -46,17 +40,11 @@ class calculator():
             #ensures that num1 and num2 is an integer and has a value
             if not isinstance(num_1, int):
                 raise TypeError
-            elif not num_1:
-                raise ValueError
             elif not isinstance(num_2, int):
                 raise TypeError
-            elif not num_2:
-                raise ValueError
             #Prints error message for corresponding type of Error
         except TypeError:
             messagebox.showerror("TypeError", "Number 1 must be an integer")
-        except ValueError:
-            messagebox.showerror("ValueError", "Number 1 must be an integer")
         else:
             result = self.num_1 - self.num_2
             self.result=result
@@ -67,17 +55,11 @@ class calculator():
             #ensures that num1 and num2 is an integer and has a value
             if not isinstance(num_1, int):
                 raise TypeError
-            elif not num_1:
-                raise ValueError
             elif not isinstance(num_2, int):
                 raise TypeError
-            elif not num_2:
-                raise ValueError
             #Prints error message for corresponding type of Error
         except TypeError:
             messagebox.showerror("TypeError", "Number 1 must be an integer")
-        except ValueError:
-            messagebox.showerror("ValueError", "Number 1 must be an integer")
         else:
             result = self.num_1 * self.num_2
             self.result=result
@@ -85,22 +67,20 @@ class calculator():
     # def for performing the division operation 
     def operation_division(self,num_1,num_2):
         try:
-            #ensures that num1 and num2 is an integer and has a value
             if not isinstance(num_1, int):
-                raise TypeError
-            elif not num_1:
-                raise ValueError
+                 raise TypeError
             elif not isinstance(num_2, int):
-                raise TypeError
-            elif not num_2:
+                 raise TypeError
+            elif num_2==0:
                 raise ValueError
-            #Prints error message for corresponding type of Error
         except TypeError:
-            messagebox.showerror("TypeError", "Number 1 must be an integer")
+            messagebox.showerror("TypeError", "Number must be an integer")
+            return
         except ValueError:
-            messagebox.showerror("ValueError", "Number 1 must be an integer")
+            messagebox.showerror("Value Error", "Value of number 2 must not be equal to 0")
+            return
         else:
-            result = self.num_1/ self.num_2
+            result = self.num_1/self.num_2
             self.result=result
             return
     #Creates def for Input of num1 & num2
