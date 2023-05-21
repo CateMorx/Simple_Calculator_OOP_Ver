@@ -52,6 +52,10 @@ class calculator_GUI:
         #Button to calculate results
         self.calc.prints_results = tkinter.Button(GUI, text="Caculate", command=self.calculate_results)
         self.calc.prints_results.pack(pady=10)
+
+        #Reference to check if there is a number input before calculating
+        self.num1_calculate=0
+        self.num2_calculate=0
 #Def for button functions
     #def for power button command
     def toggle_power(self):
@@ -96,60 +100,96 @@ class calculator_GUI:
 
     def enter_num1 (self):
         try:
+            #Error message when calculator is off and tries to enter number
             if not self.calc.on:
                 messagebox.showinfo("Error", "Please turn on the Power")
                 return
             num_1 = self.calc.num1_entry.get()
+            #Error message if tries to enter a blank number input
             if not num_1:
                 messagebox.showinfo("Error", "Please enter a value for Number 1")
                 return
-
+            #Raise value error if num1 is not an int
             if not num_1.isdigit():
                 raise ValueError
 
+            #sets input as num1
             self.calc.set_num1(int(num_1))
+            #confirms there is a number input
+            self.num1_calculate=1
         except ValueError:
             messagebox.showerror("ValueError", "Number must be an integer")
 
     def enter_num2 (self):
         try:
+            #Error message when calculator is off and tries to enter number
             if not self.calc.on:
                 messagebox.showinfo("Error", "Please turn on the Power")
                 return
             num_2 = self.calc.num2_entry.get()
+            #Error message if tries to enter a blank number input
             if not num_2:
                 messagebox.showinfo("Error", "Please enter a value for Number 1")
                 return
-
+            #Raise value error if num2 is not an int
             if not num_2.isdigit():
                 raise ValueError
 
+            #sets input as num2
             self.calc.set_num2(int(num_2))
+            #confirms there is a number input
+            self.num2_calculate=1
         except ValueError:
             messagebox.showerror("ValueError", "Number must be an integer")
  
     def calculate_results(self):
+        #Error message when calculator is off and tries to calculate
+        if not self.calc.on:
+            messagebox.showinfo("Error", "Please turn on the Power")
+            return
+        #Checks if there is a number input on both num1 and num2
+        if self.num1_calculate==0 or self.num2_calculate==0:
+            messagebox.showinfo("Error", "Please enter your two numbers first")
+            return
+        #Shows error message if no operation selected
+        if self.calc.selected_option.get() == "Select an operation":
+            messagebox.showinfo("Error", "Please select an operation first")
+            return
+        #Retrieves user's choice
         selected_item = self.calc.combo.get()
+        #Retrieves numbers
         num_1 = self.calc.get_num1()
         num_2 = self.calc.get_num2()
+
+        #If first choice, addition
         if selected_item[0] == '1':
             self.calc.operation_addition(num_1, num_2)
             results = self.calc.get_results()
+            #Clears any previous input in results entry and replaces with current results
             self.calc.results_entry.delete(0, tkinter.END)
             self.calc.results_entry.insert(0, str(results))
+
+        #If second choice, subtraction
         elif selected_item[0] == '2':
             self.calc.operation_subtraction(num_1, num_2)
             results = self.calc.get_results()
+            #Clears any previous input in results entry and replaces with current results
             self.calc.results_entry.delete(0, tkinter.END)
             self.calc.results_entry.insert(0, str(results))
+
+        #If third choice, multiplication
         elif selected_item[0] == '3':
             self.calc.operation_multiplication(num_1, num_2)
             results = self.calc.get_results()
+            #Clears any previous input in results entry and replaces with current results
             self.calc.results_entry.delete(0, tkinter.END)
             self.calc.results_entry.insert(0, str(results))
+
+        #If last choice, division
         elif selected_item[0] == '4':
             self.calc.operation_division(num_1, num_2)
             results = self.calc.get_results()
+            #Clears any previous input in results entry and replaces with current results
             self.calc.results_entry.delete(0, tkinter.END)
             self.calc.results_entry.insert(0, str(results))
     #Def for asking user if they want to try again or not
