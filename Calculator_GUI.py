@@ -76,6 +76,28 @@ class calculator_GUI:
         num_2 = self.calc.num2_entry.get()
         self.calc.set_num2(int(num_2))
  
+    def calculate_results(self):
+        selected_item = self.calc.combo.get()
+        if selected_item[0] == '1':
+            self.calc.operation_addition()
+            results = self.calc.get_results()
+            self.calc.results_entry.delete(0, tkinter.END)
+            self.calc.results_entry.insert(0, str(results))
+        elif selected_item[0] == '2':
+            self.calc.operation_subtraction()
+            results = self.calc.get_results()
+            self.calc.results_entry.delete(0, tkinter.END)
+            self.calc.results_entry.insert(0, str(results))
+        elif selected_item[0] == '3':
+            self.calc.operation_multiplication()
+            results = self.calc.get_results()
+            self.calc.results_entry.delete(0, tkinter.END)
+            self.calc.results_entry.insert(0, str(results))
+        elif selected_item[0] == '4':
+            self.calc.operation_division()
+            results = self.calc.get_results()
+            self.calc.results_entry.delete(0, tkinter.END)
+            self.calc.results_entry.insert(0, str(results))
     #Def for asking user if they want to try again or not
 #starts the event loop of the GUI application
 GUI = tkinter.Tk()
