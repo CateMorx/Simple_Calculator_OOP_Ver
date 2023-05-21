@@ -63,11 +63,21 @@ class calculator_GUI:
             self.calc.power_button.config(text="Power: On")
 
     def enter_num1 (self):
-        if not self.calc.on:
-            messagebox.showinfo("Error", "Please turn on the Power")
-            return
-        num_1 = self.calc.num1_entry.get()
-        self.calc.set_num1(int(num_1))
+        try:
+            if not self.calc.on:
+                messagebox.showinfo("Error", "Please turn on the Power")
+                return
+            num_1 = self.calc.num1_entry.get()
+            if not num_1:
+                messagebox.showinfo("Error", "Please enter a value for Number 1")
+                return
+
+            if not num_1.isdigit():
+                raise ValueError
+
+            self.calc.set_num1(int(num_1))
+        except ValueError:
+            messagebox.showerror("ValueError", "Number must be an integer")
 
     def enter_num2 (self):
         if not self.calc.on:
