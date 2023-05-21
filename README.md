@@ -18,7 +18,6 @@ This program portrays the following features:
 
 
 # Demo
-![Alt Text](Calculator GUI.gif)
 
 # Needed Module
 Tkinter
