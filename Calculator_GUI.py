@@ -78,23 +78,25 @@ class calculator_GUI:
  
     def calculate_results(self):
         selected_item = self.calc.combo.get()
+        num_1 = self.calc.get_num1()
+        num_2 = self.calc.get_num2()
         if selected_item[0] == '1':
-            self.calc.operation_addition()
+            self.calc.operation_addition(num_1, num_2)
             results = self.calc.get_results()
             self.calc.results_entry.delete(0, tkinter.END)
             self.calc.results_entry.insert(0, str(results))
         elif selected_item[0] == '2':
-            self.calc.operation_subtraction()
+            self.calc.operation_subtraction(num_1, num_2)
             results = self.calc.get_results()
             self.calc.results_entry.delete(0, tkinter.END)
             self.calc.results_entry.insert(0, str(results))
         elif selected_item[0] == '3':
-            self.calc.operation_multiplication()
+            self.calc.operation_multiplication(num_1, num_2)
             results = self.calc.get_results()
             self.calc.results_entry.delete(0, tkinter.END)
             self.calc.results_entry.insert(0, str(results))
         elif selected_item[0] == '4':
-            self.calc.operation_division()
+            self.calc.operation_division(num_1, num_2)
             results = self.calc.get_results()
             self.calc.results_entry.delete(0, tkinter.END)
             self.calc.results_entry.insert(0, str(results))

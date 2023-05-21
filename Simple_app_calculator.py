@@ -125,3 +125,7 @@ class calculator():
             return self.num_2
     def get_results(self):
         return self.result
+    def get_num1(self):
+        return self.num_1
+    def get_num2(self):
+        return self.num_2
