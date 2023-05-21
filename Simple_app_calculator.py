@@ -13,6 +13,7 @@ class calculator():
         self.num_2=0
         self.on = False
         self.result=0
+        self.model=""
     #Creates def for on and off of calculator
     def turn_On(self):
         self.on = True
@@ -104,6 +105,19 @@ class calculator():
         else:
             self.num_2 = num_2
             return self.num_2
+    def set_model(self, model):
+        if model[0] == '1':
+            model ="Casio"
+            self.model=model
+        elif model[0] == '2':
+            model ="Samsung"
+            self.model=model
+        if model[0] == '3':
+            model ="Sony"
+            self.model=model
+        return
+    def get_model(self):
+        return self.model
     def get_results(self):
         return self.result
     def get_num1(self):

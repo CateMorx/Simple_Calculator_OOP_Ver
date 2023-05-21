@@ -15,6 +15,15 @@ class calculator_GUI:
         self.GUI = GUI
         self.calc= calc
 
+        #Combobox for options of Models
+        options_model = ["1-Casio", "2-Samsung", "3-Sony"]
+        self.calc.selected_option_model = tkinter.StringVar()
+        self.calc.combo_model = ttk.Combobox(GUI, textvariable=self.calc.selected_option_model)
+        self.calc.combo_model['values'] = options_model
+        self.calc.combo_model.pack()
+        self.calc.combo_model.set("Select a Model")
+        self.calc.combo_model.configure(state='readonly')
+
         #Button for Power on and off
         self.calc.power_button = tkinter.Button(GUI, text="Power: Off", command=self.toggle_power)
         self.calc.power_button.pack(pady=10)
@@ -66,6 +75,9 @@ class calculator_GUI:
         else:
             self.calc.turn_On()
             self.calc.power_button.config(text="Power: On")
+
+            selected_item = self.calc.combo_model.get()
+            self.calc.set_model(selected_item)
             # Create a top-level window for the loading popup
             loading_popup = tkinter.Toplevel()
             loading_popup.title("Initializing...")
@@ -73,7 +85,7 @@ class calculator_GUI:
             loading_popup.resizable(False, False)
             
             # Create a label to display the loading message
-            label = ttk.Label(loading_popup, text="Initializing Casio ...", font=("Helvetica", 12))
+            label = ttk.Label(loading_popup, text="Initializing " + str(self.calc.get_model()) +  "...", font=("Helvetica", 12))
             label.pack(pady=20)
             
             # Add a progress bar to indicate the loading progress
