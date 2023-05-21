@@ -72,6 +72,7 @@ class calculator():
             elif not isinstance(num_2, int):
                  raise TypeError
             elif num_2==0:
+                self.result="Error"
                 raise ValueError
         except TypeError:
             messagebox.showerror("TypeError", "Number must be an integer")
