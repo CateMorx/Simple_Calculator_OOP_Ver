@@ -42,6 +42,7 @@ class calculator_GUI:
         self.calc.combo['values'] = options
         self.calc.combo.pack()
         self.calc.combo.set("Select an operation")
+        self.calc.combo.configure(state='readonly')
 
         #Label and textbox for results
         self.calc.results_label = tkinter.Label(GUI, text="Results:")
@@ -129,7 +130,7 @@ class calculator_GUI:
             num_2 = self.calc.num2_entry.get()
             #Error message if tries to enter a blank number input
             if not num_2:
-                messagebox.showinfo("Error", "Please enter a value for Number 1")
+                messagebox.showinfo("Error", "Please enter a value for Number 2")
                 return
             #Raise value error if num2 is not an int
             if not num_2.isdigit():
