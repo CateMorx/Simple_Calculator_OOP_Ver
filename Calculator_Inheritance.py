@@ -56,9 +56,9 @@ class ScientificCalculator(calculator):
 calc_2 = ScientificCalculator()
 class Scicalculator_GUI(calculator_GUI):
     #Overrides __init__ to add options for power and squareroot operation
-    def __init__(self, calc, GUI):
+    def __init__(self, calc_2, GUI):
         self.GUI = GUI
-        self.calc= calc
+        self.calc= calc_2
 
         #Combobox for options of Models
         options_model = ["1-Casio", "2-Samsung", "3-Sony"]
@@ -90,7 +90,7 @@ class Scicalculator_GUI(calculator_GUI):
         self.calc.num2_enter.pack(pady=10)
 
         #Combobox for options of operations
-        options = ["1-Additon", "2-Subtraction", "3-Multiplication", "4-Division"]
+        options = ["1-Additon", "2-Subtraction", "3-Multiplication", "4-Division", "5-Power", "6-Square root"]
         self.calc.selected_option = tkinter.StringVar()
         self.calc.combo = ttk.Combobox(GUI, textvariable=self.calc.selected_option)
         self.calc.combo['values'] = options
