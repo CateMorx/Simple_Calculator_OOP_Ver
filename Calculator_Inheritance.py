@@ -162,6 +162,23 @@ class Scicalculator_GUI(calculator_GUI):
             #Clears any previous input in results entry and replaces with current results
             self.calc.results_entry.delete(0, tkinter.END)
             self.calc.results_entry.insert(0, str(results))
+
+        #If fifth choice, power
+        elif selected_item[0] == '5':
+            self.calc.operation_power(num_1, num_2)
+            results = self.calc.get_results()
+            #Clears any previous input in results entry and replaces with current results
+            self.calc.results_entry.delete(0, tkinter.END)
+            self.calc.results_entry.insert(0, str(results))
+
+        #If last choice, square root
+        elif selected_item[0] == '6':
+            self.calc.operation_square_root(num_1)
+            results = self.calc.get_results()
+            #Clears any previous input in results entry and replaces with current results
+            self.calc.results_entry.delete(0, tkinter.END)
+            self.calc.results_entry.insert(0, str(results))
+            
         # Asking user if they want to try again or not
         choice = messagebox.askyesno("Try again?", "Do you want to try again?")
         #If no, creates a pop-up Thank you message and closes the program
@@ -176,6 +193,7 @@ class Scicalculator_GUI(calculator_GUI):
             self.calc.results_entry.delete(0, tkinter.END)
             self.num1_calculate=0
             self.num2_calculate=0
+
     #starts the event loop of the GUI application
 GUI2 = tkinter.Tk()
 GUI2.title("Calculator")
