@@ -167,7 +167,7 @@ class Scicalculator_GUI(calculator_GUI):
         #If no, creates a pop-up Thank you message and closes the program
         if not choice:
             messagebox.showinfo("Thank you message", "Thank you!")
-            GUI.destroy()
+            GUI2.destroy()
         #If yes, clears all initial input
         else:
             self.calc.num1_entry.delete(0, tkinter.END)
@@ -177,3 +177,7 @@ class Scicalculator_GUI(calculator_GUI):
             self.num1_calculate=0
             self.num2_calculate=0
     #starts the event loop of the GUI application
+GUI2 = tkinter.Tk()
+GUI2.title("Calculator")
+GUI2_calculator= Scicalculator_GUI(calc_2, GUI2)
+GUI2.mainloop()
