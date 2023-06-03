@@ -126,15 +126,14 @@ class Scicalculator_GUI(ScientificCalculator, calculator_GUI):
         if operation_choice<6 and (self.num1_calculate==0 or self.num2_calculate==0):
             messagebox.showinfo("Error", "Please enter your two numbers first")
             return
+        
+        #If chosen operation is square roots, reminds user only num1 is used and deletes entry for num2
         if operation_choice==6 and self.calc.get_num2():
             self.calc.set_num2(0)
             self.calc.num2_entry.delete(0, tkinter.END)
             messagebox.showinfo("Reminder", "Only Number 1 will be used for the calculation")
             return
-        #Checks if there is a number input on both num1 and num2
-        if self.num1_calculate==0 or self.num2_calculate==0:
-            messagebox.showinfo("Error", "Please enter your two numbers first")
-            return
+
         #Shows error message if no operation selected
         if self.calc.selected_option.get() == "Select an operation":
             messagebox.showinfo("Error", "Please select an operation first")
@@ -170,11 +169,17 @@ class Scicalculator_GUI(ScientificCalculator, calculator_GUI):
 
         #If last choice, division
         elif selected_item[0] == '4':
-            self.calc.operation_division(num_1, num_2)
-            results = self.calc.get_results()
-            #Clears any previous input in results entry and replaces with current results
-            self.calc.results_entry.delete(0, tkinter.END)
-            self.calc.results_entry.insert(0, str(results))
+            if self.calc.get_num2()==0:
+                self.calc.operation_division(num_1, num_2)
+                self.calc.set_num2(0)
+                self.calc.num2_entry.delete(0, tkinter.END)
+                return
+            else:
+                self.calc.operation_division(num_1, num_2)
+                results = self.calc.get_results()
+                #Clears any previous input in results entry and replaces with current results
+                self.calc.results_entry.delete(0, tkinter.END)
+                self.calc.results_entry.insert(0, str(results))
 
         #If fifth choice, power
         elif selected_item[0] == '5':
@@ -202,7 +207,7 @@ class Scicalculator_GUI(ScientificCalculator, calculator_GUI):
         else:
             self.calc.num1_entry.delete(0, tkinter.END)
             self.calc.num2_entry.delete(0, tkinter.END)
-            self.calc.selected_option.set("Select an operation")
+            self.calc.combo.set("Select an operation")
             self.calc.results_entry.delete(0, tkinter.END)
             self.num1_calculate=0
             self.num2_calculate=0
