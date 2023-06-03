@@ -112,4 +112,68 @@ class Scicalculator_GUI(calculator_GUI):
         self.num1_calculate=0
         self.num2_calculate=0
     #override calculate results to add functions for power and squareroot operation
+    def calculate_results(self):
+        #Error message when calculator is off and tries to calculate
+        if not self.calc.on:
+            messagebox.showinfo("Error", "Please turn on the Power")
+            return
+        #Checks if there is a number input on both num1 and num2
+        if self.num1_calculate==0 or self.num2_calculate==0:
+            messagebox.showinfo("Error", "Please enter your two numbers first")
+            return
+        #Shows error message if no operation selected
+        if self.calc.selected_option.get() == "Select an operation":
+            messagebox.showinfo("Error", "Please select an operation first")
+            return
+        #Retrieves user's choice
+        selected_item = self.calc.combo.get()
+        #Retrieves numbers
+        num_1 = self.calc.get_num1()
+        num_2 = self.calc.get_num2()
+
+        #If first choice, addition
+        if selected_item[0] == '1':
+            self.calc.operation_addition(num_1, num_2)
+            results = self.calc.get_results()
+            #Clears any previous input in results entry and replaces with current results
+            self.calc.results_entry.delete(0, tkinter.END)
+            self.calc.results_entry.insert(0, str(results))
+
+        #If second choice, subtraction
+        elif selected_item[0] == '2':
+            self.calc.operation_subtraction(num_1, num_2)
+            results = self.calc.get_results()
+            #Clears any previous input in results entry and replaces with current results
+            self.calc.results_entry.delete(0, tkinter.END)
+            self.calc.results_entry.insert(0, str(results))
+
+        #If third choice, multiplication
+        elif selected_item[0] == '3':
+            self.calc.operation_multiplication(num_1, num_2)
+            results = self.calc.get_results()
+            #Clears any previous input in results entry and replaces with current results
+            self.calc.results_entry.delete(0, tkinter.END)
+            self.calc.results_entry.insert(0, str(results))
+
+        #If last choice, division
+        elif selected_item[0] == '4':
+            self.calc.operation_division(num_1, num_2)
+            results = self.calc.get_results()
+            #Clears any previous input in results entry and replaces with current results
+            self.calc.results_entry.delete(0, tkinter.END)
+            self.calc.results_entry.insert(0, str(results))
+        # Asking user if they want to try again or not
+        choice = messagebox.askyesno("Try again?", "Do you want to try again?")
+        #If no, creates a pop-up Thank you message and closes the program
+        if not choice:
+            messagebox.showinfo("Thank you message", "Thank you!")
+            GUI.destroy()
+        #If yes, clears all initial input
+        else:
+            self.calc.num1_entry.delete(0, tkinter.END)
+            self.calc.num2_entry.delete(0, tkinter.END)
+            self.calc.selected_option.set("Select an operation")
+            self.calc.results_entry.delete(0, tkinter.END)
+            self.num1_calculate=0
+            self.num2_calculate=0
     #starts the event loop of the GUI application
