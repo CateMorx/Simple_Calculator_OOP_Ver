@@ -10,5 +10,24 @@ import math
 from Simple_app_calculator import calculator
 
 #creates child class
-#Adds new power method
-#adds new square root method
+class ScientificCalculator(calculator):
+    #allows child class to  inherit and utilize the attributes of parent class
+    def __init__(self):
+        super().__init__()
+    #Adds new power method
+    def operation_power(self, num_1, num_2):
+        #Exception handling for errors if num_1 and num_2 is not integer
+        try:
+            if not isinstance(num_1, int):
+                raise TypeError
+            elif not isinstance(num_2, int):
+                raise TypeError
+        #creates popup error message for Type Errors
+        except TypeError:
+            messagebox.showerror("TypeError", "Number and power must be integers")
+        else:
+            #calculates with power operation
+            result = num_1 ** num_2
+            self.result = result
+            return
+    #adds new square root method
