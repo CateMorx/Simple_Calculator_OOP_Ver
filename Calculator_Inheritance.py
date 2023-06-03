@@ -31,3 +31,21 @@ class ScientificCalculator(calculator):
             self.result = result
             return
     #adds new square root method
+    def operation_square_root(self, num_1):
+        try:
+            #Exception handling for errors if num_1 is not integer and less than 0
+            if not isinstance(num_1, int):
+                raise TypeError
+            elif num_1 < 0:
+                raise ValueError
+            #creates popup error message for Type Errors
+        except TypeError:
+            messagebox.showerror("TypeError", "Number must be a positive integer")
+            #creates popup error message for Value Errors
+        except ValueError:
+            messagebox.showerror("ValueError", "Number must be a positive integer")
+        else:
+            #calculates with square root operation
+            result = math.sqrt(num_1)
+            self.result = result
+            return
