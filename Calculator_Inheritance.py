@@ -53,6 +53,63 @@ class ScientificCalculator(calculator):
             return
 
 #Creates child class for GUI
+calc_2 = ScientificCalculator()
+class Scicalculator_GUI(calculator_GUI):
     #Overrides __init__ to add options for power and squareroot operation
+    def __init__(self, calc, GUI):
+        self.GUI = GUI
+        self.calc= calc
+
+        #Combobox for options of Models
+        options_model = ["1-Casio", "2-Samsung", "3-Sony"]
+        self.calc.selected_option_model = tkinter.StringVar()
+        self.calc.combo_model = ttk.Combobox(GUI, textvariable=self.calc.selected_option_model)
+        self.calc.combo_model['values'] = options_model
+        self.calc.combo_model.pack()
+        self.calc.combo_model.set("Select a Model")
+        self.calc.combo_model.configure(state='readonly')
+
+        #Button for Power on and off
+        self.calc.power_button = tkinter.Button(GUI, text="Power: Off", command=self.toggle_power)
+        self.calc.power_button.pack(pady=10)
+
+        #Label, Text Box, and Button for Num1 Input
+        self.calc.num1_label = tkinter.Label(GUI, text="Number 1:")
+        self.calc.num1_label.pack(pady=5)
+        self.calc.num1_entry = tkinter.Entry(GUI)
+        self.calc.num1_entry.pack(pady=5)
+        self.calc.num1_enter= tkinter.Button(GUI, text="Enter", command=self.enter_num1)
+        self.calc.num1_enter.pack(pady=10)
+
+        #Label, Text Box, and Button for Num1 Input
+        self.calc.num2_label = tkinter.Label(GUI, text="Number 2:")
+        self.calc.num2_label.pack(pady=5)
+        self.calc.num2_entry = tkinter.Entry(GUI)
+        self.calc.num2_entry.pack(pady=5)
+        self.calc.num2_enter= tkinter.Button(GUI, text="Enter", command=self.enter_num2)
+        self.calc.num2_enter.pack(pady=10)
+
+        #Combobox for options of operations
+        options = ["1-Additon", "2-Subtraction", "3-Multiplication", "4-Division"]
+        self.calc.selected_option = tkinter.StringVar()
+        self.calc.combo = ttk.Combobox(GUI, textvariable=self.calc.selected_option)
+        self.calc.combo['values'] = options
+        self.calc.combo.pack()
+        self.calc.combo.set("Select an operation")
+        self.calc.combo.configure(state='readonly')
+
+        #Label and textbox for results
+        self.calc.results_label = tkinter.Label(GUI, text="Results:")
+        self.calc.results_label.pack(pady=5)
+        self.calc.results_entry = tkinter.Entry(GUI)
+        self.calc.results_entry.pack(pady=5)
+        
+        #Button to calculate results
+        self.calc.prints_results = tkinter.Button(GUI, text="Caculate", command=self.calculate_results)
+        self.calc.prints_results.pack(pady=10)
+
+        #Reference to check if there is a number input before calculating
+        self.num1_calculate=0
+        self.num2_calculate=0
     #override calculate results to add functions for power and squareroot operation
     #starts the event loop of the GUI application
