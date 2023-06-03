@@ -8,6 +8,8 @@ import tkinter as tkinter
 from tkinter import messagebox
 import math
 from Simple_app_calculator import calculator
+from tkinter import ttk
+from Calculator_GUI import calculator_GUI
 
 #creates child class
 class ScientificCalculator(calculator):
@@ -49,3 +51,8 @@ class ScientificCalculator(calculator):
             result = math.sqrt(num_1)
             self.result = result
             return
+
+#Creates child class for GUI
+    #Overrides __init__ to add options for power and squareroot operation
+    #override calculate results to add functions for power and squareroot operation
+    #starts the event loop of the GUI application
