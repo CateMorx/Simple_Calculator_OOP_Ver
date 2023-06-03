@@ -217,7 +217,7 @@ class calculator_GUI:
         choice = messagebox.askyesno("Try again?", "Do you want to try again?")
         #If no, creates a pop-up Thank you message and closes the program
         if not choice:
-            messagebox.showinfo("Thank you message", "Thank you!")
+            messagebox.showinfo("Thank you message", "Thank you!, You will now proceed to the Scientific Calculator")
             GUI.destroy()
         #If yes, clears all initial input
         else:
