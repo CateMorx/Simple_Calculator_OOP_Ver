@@ -66,6 +66,8 @@ class calculator_GUI:
         #Reference to check if there is a number input before calculating
         self.num1_calculate=0
         self.num2_calculate=0
+
+        self.GUI.geometry("400x600")
 #Def for button functions
     #def for power button command
     def toggle_power(self):

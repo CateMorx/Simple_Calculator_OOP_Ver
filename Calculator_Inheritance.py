@@ -54,7 +54,7 @@ class ScientificCalculator(calculator):
 
 #Creates child class for GUI
 calc_2 = ScientificCalculator()
-class Scicalculator_GUI(calculator_GUI):
+class Scicalculator_GUI(ScientificCalculator, calculator_GUI):
     #Overrides __init__ to add options for power and squareroot operation
     def __init__(self, calc_2, GUI):
         self.GUI = GUI
@@ -111,11 +111,25 @@ class Scicalculator_GUI(calculator_GUI):
         #Reference to check if there is a number input before calculating
         self.num1_calculate=0
         self.num2_calculate=0
+
+        self.GUI.geometry("400x600")
     #override calculate results to add functions for power and squareroot operation
     def calculate_results(self):
         #Error message when calculator is off and tries to calculate
         if not self.calc.on:
             messagebox.showinfo("Error", "Please turn on the Power")
+            return
+                #Retrieves user's choice
+        selected_item = self.calc.combo.get()
+        operation_choice=int(selected_item[0])
+        #Checks if there is a number input on both num1 and num2 if the chosen operation is not Squareroot
+        if operation_choice<6 and (self.num1_calculate==0 or self.num2_calculate==0):
+            messagebox.showinfo("Error", "Please enter your two numbers first")
+            return
+        if operation_choice==6 and self.calc.get_num2():
+            self.calc.set_num2(0)
+            self.calc.num2_entry.delete(0, tkinter.END)
+            messagebox.showinfo("Reminder", "Only Number 1 will be used for the calculation")
             return
         #Checks if there is a number input on both num1 and num2
         if self.num1_calculate==0 or self.num2_calculate==0:
@@ -125,8 +139,7 @@ class Scicalculator_GUI(calculator_GUI):
         if self.calc.selected_option.get() == "Select an operation":
             messagebox.showinfo("Error", "Please select an operation first")
             return
-        #Retrieves user's choice
-        selected_item = self.calc.combo.get()
+
         #Retrieves numbers
         num_1 = self.calc.get_num1()
         num_2 = self.calc.get_num2()
@@ -178,7 +191,7 @@ class Scicalculator_GUI(calculator_GUI):
             #Clears any previous input in results entry and replaces with current results
             self.calc.results_entry.delete(0, tkinter.END)
             self.calc.results_entry.insert(0, str(results))
-            
+
         # Asking user if they want to try again or not
         choice = messagebox.askyesno("Try again?", "Do you want to try again?")
         #If no, creates a pop-up Thank you message and closes the program
@@ -196,6 +209,6 @@ class Scicalculator_GUI(calculator_GUI):
 
     #starts the event loop of the GUI application
 GUI2 = tkinter.Tk()
-GUI2.title("Calculator")
+GUI2.title("Scientific Calculator")
 GUI2_calculator= Scicalculator_GUI(calc_2, GUI2)
 GUI2.mainloop()
